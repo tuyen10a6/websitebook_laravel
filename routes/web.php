@@ -14,22 +14,26 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::prefix('admin')->group(function () {
 
     Route::get('/', function () {
-    return view('admin.home.home');
+        return view('admin.home.home');
     })->name("admin.home.home");
 
-    Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');
-    
-    Route::get('/category/create',[CategoryController::class, 'create'])->name('admin.category.create');
+    Route::group(['prefix' => 'category'], function () {
 
-    Route::post('/category/create',[CategoryController::class,'add'])->name('admin.category.add');
-    
-    Route::get('/category/{slug}',[CategoryController::class,'show'])->name('admin.category.show');
+        Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
+       
+        Route::get('/create', [CategoryController::class, 'create'])->name('admin.category.create');
+       
+        Route::post('/create', [CategoryController::class, 'add'])->name('admin.category.add');
+       
+        Route::get('/{slug}', [CategoryController::class, 'show'])->name('admin.category.show');
+      
+        Route::post('/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+       
+        Route::get('/delete/{slug}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+  
+    });
 
-    Route::post('/category/update/{id}',[CategoryController::class,'update'])->name('admin.category.update');
-
-    Route::get('/category/delete/{slug}',[CategoryController::class,'delete'])->name('admin.category.delete');
 });

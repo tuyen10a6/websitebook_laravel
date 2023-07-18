@@ -53,10 +53,12 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+
     $validated = $request->validate([
         'name' => 'required|max:255|unique:categories,name,' . $id,
         'priority' => 'required|unique:categories,priority,' . $id,
     ]);
+
       $category = category::find($id);
 
     $category->name = $request->input('name');
@@ -65,10 +67,13 @@ class CategoryController extends Controller
 
     $category->slug = $request->input('slug');
 
-        if ($category->save()) {
+        if ($category->save()) 
+        {
         return redirect('/admin/category')->with('success', 'Danh mục đã được cập nhật thành công');
-         }
-        else {
+        }
+
+        else 
+        {
         return redirect('/admin/category')->with('error', 'Có lỗi xảy ra trong quá trình cập nhật Danh mục');
          }
     }
@@ -78,7 +83,7 @@ class CategoryController extends Controller
         
        category::where('slug',$slug)->delete();
         
-        return redirect(route('admin.category.index'));
+       return redirect(route('admin.category.index'));
 
     }
 
