@@ -1,12 +1,13 @@
 <?php
  
-namespace App\Models\category;
+namespace App\Models\provider;
 
+use App\Models\product\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class category extends Model
+class Provider extends Model
 {
     /**
      * The table associated with the model.
@@ -15,16 +16,23 @@ class category extends Model
      */
     use HasFactory;
     
-    protected $table = 'categories';
+    protected $table = 'providers';
+
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
-        'priority',
-        'slug'
+        'adress',
+        'phone',
+        'email',
+        'status'
     ];
-     
+      
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }
+
+
 }

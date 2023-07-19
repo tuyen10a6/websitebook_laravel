@@ -1,12 +1,12 @@
 <?php
  
-namespace App\Models\category;
+namespace App\Models\bookcover;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class category extends Model
+class Bookcover extends Model
 {
     /**
      * The table associated with the model.
@@ -15,16 +15,20 @@ class category extends Model
      */
     use HasFactory;
     
-    protected $table = 'categories';
+    protected $table = 'bookcovers';
+
     protected $primaryKey = 'id';
+
     protected $fillable = [
-        'name',
-        'priority',
-        'slug'
+        'name'
+    
     ];
-     
+      
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }
+
+
 }

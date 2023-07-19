@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\category;
 
+use App\Http\Controllers\product\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,16 @@ Route::prefix('admin')->group(function () {
         Route::post('/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
        
         Route::get('/delete/{slug}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+  
+    });
+    Route::group(['prefix' => 'product'], function () {
+
+        Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
+        
+        Route::get('/create', [ProductController::class, 'create'])->name('admin.product.create');
+
+
+      
   
     });
 
