@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\category;
 
 use App\Http\Controllers\product\ProductController;
+use App\Models\product\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,8 +43,7 @@ Route::prefix('admin')->group(function () {
         
         Route::get('/create', [ProductController::class, 'create'])->name('admin.product.create');
 
-
-      
+        Route::post('/create',[ProductController::class, 'store'])->name('admin.product.store');
   
     });
 

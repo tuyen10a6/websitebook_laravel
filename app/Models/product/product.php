@@ -28,8 +28,9 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'imagedefault',
+        'imgdefault',
         'price',
+        'slug',
         'priceone',
         'category_id',
         'bookcover_id',

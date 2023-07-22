@@ -1,8 +1,8 @@
 @extends('admin.layout.layout')
 @section('content')
 <h2 class="ml-3 mt-3">THÊM SẢN PHẨM</h2>
-<form class="ml-3"  style="padding: 0px 10px; margin:0px auto" action="{{route('admin.category.add')}}" method="post">
-    @csrf
+<form enctype="multipart/form-data" class="ml-3"  style="padding: 0px 10px; margin:0px auto" action="{{route('admin.product.store')}}" method="post">
+  {{  csrf_field()  }}
     <div class="mb-3 mt-3">
       <label for="Name" class="form-label">Tên sản phẩm:</label>
       <input required style="width:70%" type="text" class="form-control" id="name" placeholder="Nhập tên sản phẩm" name="name">
@@ -10,7 +10,7 @@
 
     <div class="mb-3">
       <label for="Priority" class="form-label">Hình ảnh:</label>
-      <input required style="width:70%" type="file" class="form-control" id="imgdefault"  name="imgdefault">
+      <input required style="width:70%" type="file" class="form-control" id="imagedefault"  name="imgdefault">
     </div>
 
     <div class="mb-3 mt-3">
@@ -27,6 +27,10 @@
         <input required style="width:70%" type="text" class="form-control" id="page" placeholder="Nhập số trang" name="page">
       </div>
       <div class="mb-3 mt-3">
+        <label for="Name" class="form-label">Kích thước:</label>
+        <input required style="width:70%" type="text" class="form-control" id="page" placeholder="Nhập kích thước" name="size">
+      </div>
+      <div class="mb-3 mt-3">
         <label for="Name" class="form-label">Số lượng:</label>
         <input required style="width:70%" type="text" class="form-control" id="quantity" placeholder="Nhập số lượng" name="quantity">
       </div>
@@ -37,30 +41,30 @@
 
       <div class="mb-3 mt-3">
         <label for="Name" class="form-label">Loại sản phẩm:</label>
-        <select style="width:70%" class="form-select" aria-label="Default select example">
+        <select name ="category_id" style="width:70%" class="form-select" aria-label="Default select example">
            
             @foreach ($categories as $item)
-            <option value="{{$item->id}}">{{$item->name}}</option>
+            <option  value="{{$item->id}}">{{$item->name}}</option>
             @endforeach
             
           </select>
       </div>
       <div class="mb-3 mt-3">
         <label for="Name" class="form-label">Loại bìa:</label>
-        <select style="width:70%" class="form-select" aria-label="Default select example">
+        <select name ="bookcover_id" style="width:70%" class="form-select" aria-label="Default select example">
            
             @foreach ($bookcovers as $item)
-            <option value="{{$item->id}}">{{$item->name}}</option>
+            <option  value="{{$item->id}}">{{$item->name}}</option>
             @endforeach
          
           </select>
       </div>
       <div class="mb-3 mt-3">
         <label for="Name" class="form-label">Nhà cung cấp:</label>
-        <select style="width:70%" class="form-select" aria-label="Default select example">
+        <select name="provider_id" style="width:70%" class="form-select" aria-label="Default select example">
            
            @foreach ($providers as $item)
-           <option value="{{$item->id}}">{{$item->name}}</option>
+           <option  value="{{$item->id}}">{{$item->name}}</option>
            @endforeach
           </select>
       </div>
@@ -74,8 +78,8 @@
       </div>
       <div class="mb-3 mt-3">
         <label for="Name" class="form-label">Trạng thái:</label>
-        <select style="width:70%" class="form-select" aria-label="Default select example">
-            <option selected>Chọn trang thái</option>
+        <select name="status" style="width:70%" class="form-select" aria-label="Default select example">
+           
             <option value="1">Hoạt động</option>
             <option value="0">Không hoạt động</option>
        
