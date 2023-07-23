@@ -14,3 +14,4 @@
  <!-- Page level custom scripts -->
  <script src="{{URL::asset('js/demo/chart-area-demo.js')}}"></script>
  <script src="{{URL::asset('js/demo/chart-pie-demo.js')}}"></script>
+ <script src="{{URL::asset('js/admin/product.js')}}"></script>

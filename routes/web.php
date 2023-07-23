@@ -44,7 +44,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [ProductController::class, 'create'])->name('admin.product.create');
 
         Route::post('/create',[ProductController::class, 'store'])->name('admin.product.store');
-  
+       
+        Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
+
+        Route::get('{slug}', [ProductController::class, 'show'])->name('admin.product.show');
+       
+      
     });
 
 });
